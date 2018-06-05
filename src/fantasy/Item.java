@@ -10,7 +10,15 @@ public abstract class Item implements IPurchasable {
 	}
 	
 	public static Item create() {
-		return null;
+		switch (3) {
+		case 0:
+			return new Sword();
+		case 1:
+			return new Bow();
+		default:
+			System.out.println("Fehler in rand");	
+			return null;
+		}
 		
 	}
 }
