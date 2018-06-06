@@ -1,16 +1,18 @@
 package fantasy;
 
+import java.util.Random;
+
 public abstract class Item implements IPurchasable {
 	protected String itemType;
-	protected String price;
+	protected int price;
 	
 	@Override
 	public void isPurchasable() {
-		System.out.println(itemType + " ist für " + price + " Goldstücke kaufbar.");
-	}
-	
+		System.out.println(itemType + " ist fÃ¼r " + price + " GoldstÃ¼cke kaufbar.");
+	} 
+	private static Random rand = new Random();
 	public static Item create() {
-		switch (3) {
+		switch (rand.nextInt(2)) {
 		case 0:
 			return new Sword();
 		case 1:
