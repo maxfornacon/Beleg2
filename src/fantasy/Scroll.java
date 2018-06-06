@@ -1,12 +1,12 @@
 package fantasy;
 
-public class Weapon extends Item {
+public class Scroll extends Item{
 	public static Item create() {
 		switch (rand.nextInt(2)) {
 		case 0:
-			return new Sword();
+			return new Curse();
 		case 1:
-			return new Bow();
+			return new EyesOfHypno();
 		default:
 			System.out.println("Fehler in rand");	
 			return null;

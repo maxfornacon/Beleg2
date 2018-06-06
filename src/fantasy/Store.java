@@ -7,7 +7,6 @@ public abstract class Store {
 	protected String name;
 	protected List<Item> range = new LinkedList<Item>();
 	
-	
 	public void getName() {
 		System.out.println(name);
 	}

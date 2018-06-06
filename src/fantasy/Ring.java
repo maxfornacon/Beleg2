@@ -1,15 +1,16 @@
 package fantasy;
 
-public class Weapon extends Item {
-	public static Item create() {
+public class Ring extends Item {
+		public static Item create() {
 		switch (rand.nextInt(2)) {
 		case 0:
-			return new Sword();
+			return new goldRing();
 		case 1:
-			return new Bow();
+			return new silverRing();
 		default:
 			System.out.println("Fehler in rand");	
 			return null;
 		}
 	}
+
 }
