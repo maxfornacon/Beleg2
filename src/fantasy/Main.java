@@ -16,48 +16,69 @@ public class Main {
 		Bookstore bookstore = new Bookstore();
 		
 		for (int i = 0; i < 5; i++) {
-			blacksmith.range.add(Weapon.create());
+			blacksmith.range.add(Weapon.create(player));
 			jeweler.range.add(Ring.create());
 			bookstore.range.add(Scroll.create());
 		}
 		
 		System.out.println("Was möchtest du tun?");
-		System.out.println("	(1) Inventar öffnen \n	(2) Einkaufen");
+		System.out.println("	(1) Rucksack öffnen \n	(2) Einkaufen");
+		System.out.print(">");
 		for (int i = 0; i < 1; i++ ) {
-			System.out.print(">");
 			switch (input.nextInt()) {
 			case 1 :
 				if (player.backpack.size() == 0) {
-					System.out.println("Dein Inventar ist leer!");
+					System.out.println("Dein Rucksack ist leer!");
+				} else {
+					player.openBackpack();
+					System.out.print(">");
+					player.backpack.get(input.nextInt() - 1).use(player);
 				}
 				break;
 			case 2:
-				System.out.println("SCHMIEDE:");
-				for (Item weapon : blacksmith.range) {
-					
-					weapon.isPurchasable();
-				}
-				System.out.println("\nJUWELIER:");
-				for (Item ring : jeweler.range) {
-					ring.isPurchasable();
-				}
-				System.out.println("\nBUCHHANDLUNG:");
-				for (Item scroll : bookstore.range) {
-					scroll.isPurchasable();
+				System.out.println("Dein Geldbeutel beinhaltet " + player.bank + " Goldstücke.");
+				System.out.println("Du hast folgende Möglichkeiten zum Einkaufen:");
+				System.out.println("	(1) Schmiede\n	(2) Juwelier\n	(3) Buchhandlung");
+				System.out.print(">");
+				switch (input.nextInt()) {
+				case 1:
+					blacksmith.printRange();
+					System.out.print(">");
+					if(blacksmith.buyItem(player, input.nextInt() - 1)) {
+						System.out.println("Glückwunsch zum Kauf!");
+					} else {
+						System.out.println("Du hast nicht genug Gold!");
+					}
+					break;
+				case 2:
+					jeweler.printRange();
+					System.out.print(">");
+					if(jeweler.buyItem(player, input.nextInt() - 1)) {
+						System.out.println("Glückwunsch zum Kauf!");
+					}
+					break;
+				case 3:
+					bookstore.printRange();
+					System.out.print(">");
+					if(bookstore.buyItem(player, input.nextInt() - 1)) {
+						System.out.println("Glückwunsch zum Kauf!");
+					}
+					break;
+
+				default:
+					System.out.println("Ungültige Eingabe!");
+					break;
 				}
 				break;
 			default:
 				System.out.println("Ungültige Eingabe!");
 			}
+			System.out.print("(1) Rucksack (2) Kaufen >");
 			i--;
 		}
 		
 		
-		/*blacksmith.buyItem(player, 2);
-		System.out.println(player.bank);
-		for (int i = 0; i < player.backpack.size(); i++) {
-			System.out.println(player.backpack.get(i).itemType);
-		}*/
+		
 		
 	}
 

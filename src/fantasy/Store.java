@@ -11,12 +11,25 @@ public abstract class Store {
 		System.out.println(name);
 	}
 	
-	public void buyItem(Player player, int nr) {
+	public boolean buyItem(Player player, int nr) {
 		if (player.bank >= range.get(nr).price) {
 			player.backpack.add(range.get(nr));
 			
 			player.bank -= range.get(nr).price;
 			range.remove(nr);
+			return true;
+		} else {
+			return false;
 		}
+	}
+	public void printRange() {
+		int counter = 0;
+		System.out.println(name + ":");
+		for (Item item : range) {
+			counter++;
+			System.out.print("	(" + counter + ") ");
+			item.isPurchasable();
+		}
+
 	}
 }
